@@ -1,5 +1,5 @@
-import {ReactComponent as Logo} from '../../assets/maxTechShopIcon.svg';
-import {ReactComponent as Menu} from '../../assets/menuIcon.svg';
+import { ReactComponent as Logo } from '../../assets/maxTechShopIcon.svg';
+import { ReactComponent as MenuIcon } from '../../assets/menuIcon.svg';
 
 import './navbar.styles.scss';
 
@@ -17,7 +17,7 @@ const NavBar = () => (
                 <li><a href="/">Audio & TV</a></li>
             </ul>
             <div className="nav-bar__menu-icon">
-                <Menu/>
+                <MenuIcon/>
             </div>
         </div>
     </nav>
