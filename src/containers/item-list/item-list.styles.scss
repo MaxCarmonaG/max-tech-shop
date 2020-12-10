@@ -1,0 +1,17 @@
+.item-list__container {
+    width: 80vw;
+    margin: 15px auto;
+};
+
+.item-list__grid {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    place-items: center;
+    gap: 2%;
+};
+
+@media (max-width:768px) {
+    .item-list__grid {
+        display: block
+    }
+};
