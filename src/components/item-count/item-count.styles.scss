@@ -1,0 +1,44 @@
+.item-count__container {
+    width: 300px;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 15px;
+}
+
+.item-count__header {
+    width: 100%;
+    background-color: #F7F7F7;
+    padding: 15px;
+}
+
+.item-count__title {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.item-count__counter {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border: 1px solid #D5D5D5;
+    background-color: #ffffff;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.item-count__control {
+    font-weight: bold;
+    font-size: 30px;
+    color: #4992FA;
+}
+
+.item-count__button {
+    width: 90%;
+    margin-top: 15px;
+    background-color: #ffffff;
+    color: #4992FA;
+    line-height: 30px;
+    border: 1px solid #4992FA;
+    border-radius: 5px;
+    cursor: pointer;
+}
