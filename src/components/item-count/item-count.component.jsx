@@ -18,12 +18,30 @@ const ItemCount = ({ title }) => {
             <div className="item-count__header">
                 <span className="item-count__title">{title}</span>
                 <div className="item-count__counter">
-                    <span className="item-count__control" onClick={()=> setItemCount(removeItem(itemCount))}>&#8722;</span>
+                    <button
+                        className="item-count__control"
+                        onClick={()=> setItemCount(removeItem(itemCount))}
+                        disabled={!itemCount.current}
+                    >
+                        &#8722;
+                    </button>
                     <span>{itemCount.current}</span>
-                    <span className="item-count__control" onClick={()=>setItemCount(addItem(itemCount))}>+</span>
+                    <button
+                        className="item-count__control"
+                        onClick={()=>setItemCount(addItem(itemCount))}
+                        disabled={itemCount.current === itemCount.stock}
+                    >
+                        +
+                    </button>
                 </div>
             </div>
-            <button className="item-count__button">Agregar al carrito</button>
+            <button
+                className="item-count__button"
+                onClick={() => alert(`Added ${ itemCount.current>1 ? itemCount.current + ' items' : 'an item' } to cart`)}
+                disabled={!itemCount.current}
+            >
+                Add to cart
+            </button>
         </div>
     );
 };
