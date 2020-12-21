@@ -1,8 +1,7 @@
 .item-count__container {
     width: 300px;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 15px;
+    display: grid;
+    place-items: center;
 }
 
 .item-count__header {

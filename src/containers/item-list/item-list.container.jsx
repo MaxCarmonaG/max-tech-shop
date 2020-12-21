@@ -13,7 +13,7 @@ const ItemList = () => {
     
     const getData = new Promise((resolve, reject) => {
         if(SHOP_DATA.length){
-            setTimeout(() => resolve(SHOP_DATA),5000);
+            setTimeout(() => resolve(SHOP_DATA),2000);
             return;
         } else {
             reject('No data to display');
@@ -33,8 +33,8 @@ const ItemList = () => {
                 {
                     data.map(collection => (
                         <Category key={ collection.id } imageUrl={ collection.imageUrl } title={ collection.title }/>
-                        ))
-                    }
+                    ))
+                }
             </div>
         </div>
         :

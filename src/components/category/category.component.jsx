@@ -1,4 +1,3 @@
-import ItemCount from '../item-count/item-count.component';
 import './category.styles.scss';
 
 const Category = ({ imageUrl, title }) => (
@@ -15,7 +14,6 @@ const Category = ({ imageUrl, title }) => (
                 Shop Now    
             </h2>                     
         </div>
-        <ItemCount title={title}/>
     </div>
 )
 
