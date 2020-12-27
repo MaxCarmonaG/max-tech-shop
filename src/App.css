@@ -5,13 +5,8 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
 }
 
 * {
   box-sizing: border-box;
-}
-
-.App-header {
-  width: 100%;
 }

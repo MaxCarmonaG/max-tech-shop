@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import CustomButton from '../custom-button/custom-button.component';
+
 import { addItem, removeItem } from '../../providers/utils';
 
 import './item-count.styles.scss';
@@ -35,13 +37,12 @@ const ItemCount = ({ title }) => {
                     </button>
                 </div>
             </div>
-            <button
-                className="item-count__button"
+            <CustomButton
                 onClick={() => alert(`Added ${ itemCount.current>1 ? itemCount.current + ' items' : 'an item' } to cart`)}
                 disabled={!itemCount.current}
             >
                 Add to cart
-            </button>
+            </CustomButton>
         </div>
     );
 };

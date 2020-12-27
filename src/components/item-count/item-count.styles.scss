@@ -2,6 +2,7 @@
     width: 300px;
     display: grid;
     place-items: center;
+    margin: 0 auto;
 }
 
 .item-count__header {
@@ -29,15 +30,4 @@
     font-weight: bold;
     font-size: 20px;
     color: #4992FA;
-}
-
-.item-count__button {
-    width: 90%;
-    margin-top: 15px;
-    background-color: #ffffff;
-    color: #4992FA;
-    line-height: 30px;
-    border: 1px solid #4992FA;
-    border-radius: 5px;
-    cursor: pointer;
 }

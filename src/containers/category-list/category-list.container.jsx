@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import Category from '../../components/category/category.component';
+import CategoryDetail from '../category-detail/category-detail.container';
 import Spinner from '../../components/spinner/spinner.component';
 
 import SHOP_DATA from '../../providers/shop.data';
 
-import './item-list.styles.scss';
+import './category-list.styles.scss';
 
-const ItemList = () => {
+const CategoryList = () => {
     
     const [data, setData] = useState([]);
     
@@ -26,20 +27,21 @@ const ItemList = () => {
         // eslint-disable-next-line
     },[]);
 
+    const { categoryName } = useParams();
+    const category = categoryName ? data.filter(({ routeName }) => categoryName === routeName ) : data;
+
     return (
-        data.length ?
-        <div className="item-list__container">
-            <div className="item-list__grid">
-                {
-                    data.map(collection => (
-                        <Category key={ collection.id } imageUrl={ collection.imageUrl } title={ collection.title }/>
-                    ))
-                }
-            </div>
+        category.length ?
+        <div className="category-list__container">
+            {
+                category.map(({ id, ...props }) => (
+                    <CategoryDetail key={id} {...props}/>        
+                ))
+            }
         </div>
         :
         <Spinner/>
     )
 };
 
-export default ItemList;
+export default CategoryList;
