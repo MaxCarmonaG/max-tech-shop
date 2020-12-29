@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# MAX-TECH-SHOP
+![max-tech-shop](src/assets/max-tech-shop icon.png)
+
+A fake e-commerce about tech and gaming products, designed and buided with a Javascript library React JS.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
