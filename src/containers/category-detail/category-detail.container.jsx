@@ -1,7 +1,7 @@
 import { Switch, Link, Route, useRouteMatch, useHistory } from 'react-router-dom';
 
 import CategoryItem from '../../components/category-item/category-item.component';
-import ItemDetail from '../../components/item-detail/item-detail.component';
+import ItemOverview from '../item-overview/item-overview.container';
 
 import './category-detail.styles.scss';
 
@@ -33,7 +33,7 @@ const CategoryDetail = ({ routeName, title, items }) => {
                 </div>
             </Route>
             <Route path={`${url}/:itemId`}>
-                <ItemDetail items={items}/>
+                <ItemOverview items={items}/>
             </Route>
         </Switch>
     )

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import CategoryDetail from '../category-detail/category-detail.container';
 import Spinner from '../../components/spinner/spinner.component';
+import NoMatchPage from '../../components/no-match-page/no-match-page.component';
 
 import SHOP_DATA from '../../providers/shop.data';
 
@@ -28,20 +29,21 @@ const CategoryList = () => {
     },[]);
 
     const { categoryName } = useParams();
-    const category = categoryName ? data.filter(({ routeName }) => categoryName === routeName ) : data;
-
+    const category = categoryName ? data.filter(({ routeName }) => categoryName === routeName) : data;
+        
+    if(category[0] === undefined && data.length !== 0) return <NoMatchPage/>;
+    
     return (
         category.length ?
-        <div className="category-list__container">
-            {
-                category.map(({ id, ...props }) => (
-                    <CategoryDetail key={id} {...props}/>        
-                ))
-            }
-        </div>
-        :
-        <Spinner/>
-    )
+            <div className="category-list__container">
+                {
+                    category.map(({ id, ...props }) => (
+                        <CategoryDetail key={id} {...props}/>        
+                    ))
+                }
+            </div>
+        : <Spinner/>
+    );
 };
 
 export default CategoryList;
