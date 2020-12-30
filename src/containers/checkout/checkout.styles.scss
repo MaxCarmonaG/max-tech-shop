@@ -28,3 +28,19 @@
     text-align: end;
     padding: 15px 15px 0 0;
 }
+
+@media (max-width:768px) {
+    .checkout__container {
+        width: 100%;
+        overflow: auto;
+    }
+    
+    .checkout__grid {
+        width: 673px;
+    }
+
+    .checkout__total {
+        text-align: start;
+        padding: 15px 0 0 15px;
+    }
+}
