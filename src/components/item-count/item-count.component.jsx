@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import CustomButton from '../custom-button/custom-button.component';
 
@@ -14,6 +15,8 @@ const ItemCount = ({ title }) => {
             stock: 5
         }
     );
+
+    const [onRedirect, setOnRedirect] = useState(false);
 
     return (
         <div className="item-count__container">
@@ -43,6 +46,12 @@ const ItemCount = ({ title }) => {
             >
                 Add to cart
             </CustomButton>
+            <CustomButton onClick={()=>setOnRedirect(true)}>
+                Go to checkout
+            </CustomButton>
+            {
+                onRedirect && <Redirect to='/checkout'/>
+            }
         </div>
     );
 };

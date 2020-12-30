@@ -1,0 +1,30 @@
+.checkout__container {
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.checkout__grid {
+    display: grid;
+    text-align: center;
+    
+    &:first-child{
+        font-size: 30px;    
+    }
+}
+
+.checkout__block {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr 1fr;
+    border-bottom: 1px solid #000000;
+    padding: 15PX 0 15px 0;
+}
+
+.checkout__temp {
+    border-bottom: 1px solid #000000;
+    padding: 15PX 0 15px 0;
+}
+
+.checkout__total {
+    text-align: end;
+    padding: 15px 15px 0 0;
+}
