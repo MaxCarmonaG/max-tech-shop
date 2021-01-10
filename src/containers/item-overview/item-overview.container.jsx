@@ -3,12 +3,11 @@ import ItemDetail from '../../components/item-detail/item-detail.component';
 import NoMatchPage from '../../components/no-match-page/no-match-page.component';
 
 const ItemOverview = ({ items }) => {
-    const { itemId } = useParams();
-    const item = items.find(({ id }) => id === itemId * 1);
+    const { id } = useParams();
+    const item = items.find(item => item.id === id * 1);
     
     if (item) {
-        const { ...itemProps } = item;
-        return <ItemDetail { ...itemProps }/>
+        return <ItemDetail item={item}/>
     };
     return <NoMatchPage/>
 };

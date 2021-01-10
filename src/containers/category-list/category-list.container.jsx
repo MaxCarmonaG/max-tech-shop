@@ -1,43 +1,21 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
 
-import CategoryDetail from '../category-detail/category-detail.container';
+import CategoryDetail from '../../containers/category-detail/category-detail.container';
 import Spinner from '../../components/spinner/spinner.component';
-import NoMatchPage from '../../components/no-match-page/no-match-page.component';
 
-import SHOP_DATA from '../../providers/shop.data';
+import { StoreContext } from '../../providers/store.provider';
 
 import './category-list.styles.scss';
 
 const CategoryList = () => {
     
-    const [data, setData] = useState([]);
-    
-    const getData = new Promise((resolve, reject) => {
-        if(SHOP_DATA.length){
-            setTimeout(() => resolve(SHOP_DATA),2000);
-            return;
-        } else {
-            reject('No data to display');
-            return;
-        };
-    });
+    const { data } = useContext(StoreContext);
 
-    useEffect(()=>{
-        getData.then(res => setData(res)).catch(error => console.warn(error));
-        // eslint-disable-next-line
-    },[]);
-
-    const { categoryName } = useParams();
-    const category = categoryName ? data.filter(({ routeName }) => categoryName === routeName) : data;
-        
-    if(category[0] === undefined && data.length !== 0) return <NoMatchPage/>;
-    
     return (
-        category.length ?
+        data.length ?
             <div className="category-list__container">
                 {
-                    category.map(({ id, ...props }) => (
+                    data.map(({ id, ...props }) => (
                         <CategoryDetail key={id} {...props}/>        
                     ))
                 }

@@ -1,56 +1,52 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import CustomButton from '../custom-button/custom-button.component';
-
-import { addItem, removeItem } from '../../providers/utils';
+import { StoreContext } from '../../providers/store.provider';
 
 import './item-count.styles.scss';
 
 
-const ItemCount = ({ title }) => {
-    const [itemCount, setItemCount] = useState(
-        {
-            current: 0,
-            stock: 5
-        }
-    );
-
+const ItemCount = ({ stock, item }) => {
+    const [itemCount, setItemCount] = useState(0);
     const [onRedirect, setOnRedirect] = useState(false);
-
+    const { addToCart } = useContext(StoreContext);
+    
     return (
         <div className="item-count__container">
             <div className="item-count__header">
-                <span className="item-count__title">{title}</span>
                 <div className="item-count__counter">
                     <button
                         className="item-count__control"
-                        onClick={()=> setItemCount(removeItem(itemCount))}
-                        disabled={!itemCount.current}
+                        onClick={()=> setItemCount(itemCount - 1)}
+                        disabled={!itemCount}
                     >
                         &#8722;
                     </button>
-                    <span>{itemCount.current}</span>
+                    <span>{itemCount}</span>
                     <button
                         className="item-count__control"
-                        onClick={()=>setItemCount(addItem(itemCount))}
-                        disabled={itemCount.current === itemCount.stock}
+                        onClick={()=>setItemCount(itemCount + 1)}
+                        disabled={itemCount === stock}
                     >
                         +
                     </button>
                 </div>
             </div>
             <CustomButton
-                onClick={() => alert(`Added ${ itemCount.current>1 ? itemCount.current + ' items' : 'an item' } to cart`)}
-                disabled={!itemCount.current}
+                onClick={() => {
+                    alert(`Added ${ itemCount>1 ? itemCount + ' items' : 'an item' } to cart`);
+                    return addToCart({ ...item, qty: itemCount });
+                }}
+                disabled={!itemCount}
             >
                 Add to cart
             </CustomButton>
             <CustomButton onClick={()=>setOnRedirect(true)}>
-                Go to checkout
+                Go to cart
             </CustomButton>
             {
-                onRedirect && <Redirect to='/checkout'/>
+                onRedirect && <Redirect to='/cart'/>
             }
         </div>
     );

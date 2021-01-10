@@ -10,7 +10,7 @@ const Directory = ({ imageUrl, title, routeName }) => {
                 style={{ backgroundImage: `url(${ imageUrl })` }}
                 className="directory__image-backgound"
             />
-            <div className="directory__tittle-container" onClick={() => history.push(`/categories/${routeName}`)}>
+            <div className="directory__tittle-container" onClick={() => history.push(`/${routeName}`)}>
                 <h1 className="directory__title">
                     { title }
                 </h1>

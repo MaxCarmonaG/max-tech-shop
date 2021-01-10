@@ -1,0 +1,35 @@
+import { useContext } from 'react';
+
+import CartItem from '../../components/cart-item/cart-item.component';
+import { StoreContext } from '../../providers/store.provider';
+
+import './cart.styles.scss';
+
+const Cart = () => {
+    
+    const { cartItems, cartTotal } = useContext(StoreContext);
+
+    return (
+        <div className="cart__container">
+            <div className="cart__grid">
+                <div className="cart__block">
+                    <span>Product</span>
+                    <span>Description</span>
+                    <span>Quantity</span>
+                    <span>Price</span>
+                    <span>Remove</span>
+                </div>
+                {
+                    cartItems.length ?
+                    cartItems.map(item => <CartItem key={item.id} item={item} />)
+                    : <div className="cart__empty">NO ITEMS TO DISPLAY</div>
+                }
+                <div className="cart__total">
+                    Total : $ {cartTotal}
+                </div>
+            </div>
+        </div>
+    )
+};
+
+export default Cart;

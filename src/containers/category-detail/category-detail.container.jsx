@@ -6,21 +6,23 @@ import ItemOverview from '../item-overview/item-overview.container';
 import './category-detail.styles.scss';
 
 const CategoryDetail = ({ routeName, title, items }) => {
+    
     const match = useRouteMatch();
-    const { params: {categoryName}, url } = match;
+    const { params: { item }, url } = match;
     const history = useHistory();
     
-    const handleLink = id => categoryName === routeName ? history.push(`${url}/${id}`) : history.push(`${url}/${routeName}/${id}`);
+    const handleLink = id => item === routeName ? history.push(`${url}/${id}`) : history.push(`/${routeName}/${id}`);
     
+   
     return (
         <Switch>
             <Route exact path={`${url}`}>
                 <div className="category-detail__category">    
                     <div className="category-detail__title">
                         {
-                            categoryName === routeName
+                            item === routeName
                             ? title
-                            : <Link to={`${url}/${routeName}`}>{title}</Link>
+                            : <Link to={`/${routeName}`}>{title}</Link>
                         }
                     </div>
                     <div className="category-detail__grid">
@@ -32,7 +34,7 @@ const CategoryDetail = ({ routeName, title, items }) => {
                     </div>
                 </div>
             </Route>
-            <Route path={`${url}/:itemId`}>
+            <Route path={`${url}/:id`}>
                 <ItemOverview items={items}/>
             </Route>
         </Switch>
