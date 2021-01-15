@@ -4,7 +4,7 @@ import NoMatchPage from '../../components/no-match-page/no-match-page.component'
 
 const ItemOverview = ({ items }) => {
     const { id } = useParams();
-    const item = items.find(item => item.id === id * 1);
+    const item = items.find(item => item.id === id);
     
     if (item) {
         return <ItemDetail item={item}/>

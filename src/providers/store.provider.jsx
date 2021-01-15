@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
 
-import SHOP_DATA from './shop.data';
+import { CATEGORY_DATA } from './shop.data';
 import { addItem, removeItem, clearItem, reduceCart, getCartTotal, getTotalItems } from './utils';
 export const StoreContext = createContext({
     data: [],
@@ -21,17 +21,19 @@ const StoreProvider = ({ children }) => {
     const toggleDisplay = ()=> setDisplay(!display);
     
     const [data, setData] = useState([]);
-    const getData = new Promise((resolve, reject) => {
-        if(SHOP_DATA.length){
-            setTimeout(() => resolve(SHOP_DATA),2000);
+    
+    /*const getData = new Promise((resolve, reject) => {
+        if(CATEGORY_DATA.length){
+            setTimeout(() => resolve(CATEGORY_DATA),2000);
             return;
         } else {
             reject('No data to display');
             return;
         };
-    });
+    });*/
+
     useEffect(()=>{
-        getData.then(res => setData(res)).catch(error => console.warn(error));
+        setData(CATEGORY_DATA);
         // eslint-disable-next-line
     },[]);
     
