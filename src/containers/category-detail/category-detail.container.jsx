@@ -6,7 +6,6 @@ import ItemOverview from '../item-overview/item-overview.container';
 import './category-detail.styles.scss';
 
 const CategoryDetail = ({ routeName, title, items }) => {
-    console.log(items);
     const match = useRouteMatch();
     const { params: { item }, url } = match;
     const history = useHistory();
