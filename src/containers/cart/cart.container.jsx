@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import CartItem from '../../components/cart-item/cart-item.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import { StoreContext } from '../../providers/store.provider';
@@ -10,6 +10,7 @@ const Cart = () => {
     
     const { cartItems, cartTotal } = useContext(StoreContext);
     const history = useHistory();
+    if(!cartItems.length) return <Redirect to='/'/>
     return (
         <div className="cart__container">
             <div className="cart__grid">
