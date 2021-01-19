@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-
+import { useHistory } from 'react-router-dom';
 import CartItem from '../../components/cart-item/cart-item.component';
+import CustomButton from '../../components/custom-button/custom-button.component';
 import { StoreContext } from '../../providers/store.provider';
 
 import './cart.styles.scss';
@@ -8,7 +9,7 @@ import './cart.styles.scss';
 const Cart = () => {
     
     const { cartItems, cartTotal } = useContext(StoreContext);
-
+    const history = useHistory();
     return (
         <div className="cart__container">
             <div className="cart__grid">
@@ -27,6 +28,9 @@ const Cart = () => {
                 <div className="cart__total">
                     Total : $ {cartTotal}
                 </div>
+            </div>
+            <div className="cart__button">
+                <CustomButton onClick={()=>history.push('/checkout')}>Go to checkout</CustomButton>
             </div>
         </div>
     )

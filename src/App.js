@@ -9,6 +9,7 @@ import CategoryList from './containers/category-list/category-list.container';
 import Category from './containers/category/category.container';
 import NoMatchPage from './components/no-match-page/no-match-page.component';
 import Cart from './containers/cart/cart.container';
+import Checkout from './containers/checkout/checkout.container';
 //import { addCollectionsAndDocuments } from './firebase/firebase.utils';
 //import { ITEMS_DATA } from './providers/shop.data';
 import './App.css';
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/" component={Home}/>
           <Route exact path="/categories" component={CategoryList}/>
           <Route exact path="/cart" component={Cart}/>
+          <Route exact path="/checkout" component={Checkout}/>
           <Route path="/:item" component={Category}/>
           <Route path="*" component={NoMatchPage}/>
         </Switch>

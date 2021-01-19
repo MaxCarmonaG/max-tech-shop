@@ -13,7 +13,8 @@ export const StoreContext = createContext({
     remove: ()=>{},
     clear: ()=>{},
     cartTotal: 0,
-    totalItems: 0     
+    totalItems: 0,
+    clearCart: ()=>{}     
 });
 
 const StoreProvider = ({ children }) => {
@@ -50,6 +51,7 @@ const StoreProvider = ({ children }) => {
     const add = item => setCartItems(addItem(cartItems, item));
     const remove = item => setCartItems(removeItem(cartItems, item));
     const clear = item => setCartItems(clearItem(cartItems, item));
+    const clearCart = () => setCartItems([]);
 
     return (
         <StoreContext.Provider
@@ -63,7 +65,8 @@ const StoreProvider = ({ children }) => {
                 remove,
                 clear,
                 cartTotal,
-                totalItems
+                totalItems,
+                clearCart
             }}
         >
             {children}

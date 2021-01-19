@@ -1,0 +1,55 @@
+.checkout__container {
+    width: 80vw;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+.checkout__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.checkout__info {
+    display: grid;
+    gap: 10px;
+
+    input, label {
+        font-size: 20px;
+    }
+}
+
+.checkout__title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.checkout__items {
+    border: 1px solid #000000;
+    margin: 15px 0;
+    padding: 0 15px;
+}
+
+.checkout__total {
+    font-size: 30px;
+    text-align: end;
+}
+
+.checkout__button {
+    width: 300px;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+}
+
+.checkout__purchase {
+    font-size: 20px;
+    width: 80vw;
+    margin: 0 auto;
+    padding-top: 15px;
+    display: grid;
+    gap: 15px;
+    text-align: center;
+}
