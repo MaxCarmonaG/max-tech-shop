@@ -11,7 +11,7 @@ I want to become an excellent front-end web developer and React.js is the main o
 
 ## Features
 
-MAX-TECH-SHOP App is able to show a list of products by category and details like a real e-commerce place. This web app is a SPA that can be navigate with links that let you go to other views and also mimic the behavior of an app requesting to an end point with a delay of response and a loading component. 
+MAX-TECH-SHOP App is able to show a list of products by category and details like a real e-commerce place. This web app is a SPA that can be navigated with links that let you go to other views, also is possible add to cart a quantity of products and carry out a complete purchase process, ending with an ID number confirmation. The app is back-end less thanks to firebase where it fetch the products information and upload the purchase information.   
 
 ## Schema
 
@@ -24,6 +24,7 @@ MAX-TECH-SHOP App is able to show a list of products by category and details lik
 + [React](https://facebook.github.io/react/)
 + [SASS](https://sass-lang.com/)
 + [React-Router-Dom](https://reactrouter.com/web/guides/quick-start)
++ [Firebase](https://firebase.google.com/)
 
 ## Build status
 
