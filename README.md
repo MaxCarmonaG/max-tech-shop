@@ -28,7 +28,7 @@ MAX-TECH-SHOP App is able to show a list of products by category and details lik
 
 ## Build status
 
-The project is still in progress an this is the first delivery.
+The project is ready and running and you can visit us here [https://max-tech-shop.vercel.app/](https://max-tech-shop.vercel.app/)
 
 ## Clone and Getting Started
   
