@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import CustomButton from '../custom-button/custom-button.component';
 import { StoreContext } from '../../providers/store.provider';
@@ -9,8 +9,8 @@ import './item-count.styles.scss';
 
 const ItemCount = ({ stock, item }) => {
     const [itemCount, setItemCount] = useState(0);
-    const [onRedirect, setOnRedirect] = useState(false);
-    const { addToCart } = useContext(StoreContext);
+    const { addToCart, cartItems } = useContext(StoreContext);
+    const history = useHistory();
     
     return (
         <div className="item-count__container">
@@ -42,12 +42,9 @@ const ItemCount = ({ stock, item }) => {
             >
                 Add to cart
             </CustomButton>
-            <CustomButton onClick={()=>setOnRedirect(true)}>
+            <CustomButton onClick={()=>history.push('/cart')} disabled={!cartItems.length}>
                 Go to cart
             </CustomButton>
-            {
-                onRedirect && <Redirect to='/cart'/>
-            }
         </div>
     );
 };
