@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router';
-import NavBar from './components/Navbar/Navbar';
-import Home from './containers/home/home.container';
-import CategoryList from './containers/category-list/category-list.container';
-import Category from './containers/category/category.container';
+import NavBar from '@/components/Navbar/Navbar';
+import Home from '@/pages/Home';
+import CategoryList from './pages/Categories/Categories';
+import Category from './pages/category/category.container';
 import NoMatchPage from './components/no-match-page/no-match-page.component';
-import Cart from './containers/cart/cart.container';
-import Checkout from './containers/checkout/checkout.container';
+import Cart from './pages/cart/cart.container';
+import Checkout from './pages/checkout/checkout.container';
 //import { addCollectionsAndDocuments } from './firebase/firebase.utils';
 //import { ITEMS_DATA } from './providers/shop.data';
 import './App.css';

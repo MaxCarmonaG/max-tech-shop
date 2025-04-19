@@ -1,16 +1,27 @@
 export type ItemType = {
   id: string;
   category: string;
-  name: string;
   description: string;
   imageUrl: string;
+  name: string;
   price: number;
   stock: number;
-  qty: number;
+  featured?: boolean;
+  //  qty: number;
+};
+
+export type CategoryType = {
+  id: number;
+  title: string;
+  imageUrl: string;
+  slug: string;
 };
 
 export type StoreContextType = {
-  data: ItemType[];
+  categories: CategoryType[];
+  items: ItemType[];
+  featured: ItemType[];
+  isLoading: boolean;
   display: boolean;
   toggleDisplay: () => void;
   cartItems: ItemType[];

@@ -37,7 +37,8 @@ const ItemTypeConverter = {
       imageUrl: data.imageUrl,
       price: data.price,
       stock: data.stock,
-      qty: data.qty,
+      featured: data.featured,
+      // qty: data.qty,
     };
   },
 };

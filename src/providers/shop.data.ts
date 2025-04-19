@@ -2,25 +2,25 @@ export const CATEGORY_DATA = [
   {
     id: 1,
     title: 'Video Games',
-    routeName: 'gaming',
+    slug: 'gaming',
     imageUrl: 'https://i.ibb.co/8NQBntw/supersmashbroswiu-960pxhedimg.jpg',
   },
   {
     id: 2,
     title: 'Computers',
-    routeName: 'computers',
+    slug: 'computers',
     imageUrl: 'https://i.ibb.co/vvWvkSR/transparent-computer.png',
   },
   {
     id: 3,
     title: 'Peripherals',
-    routeName: 'peripherals',
+    slug: 'peripherals',
     imageUrl: 'https://i.ibb.co/k1GGNLn/winter-holiday-gifts-for-pc-gamers.jpg',
   },
   {
     id: 4,
     title: 'Audio & Tv',
-    routeName: 'audioTv',
+    slug: 'audioTv',
     imageUrl: 'https://i.ibb.co/yq70jD0/Tvand.jpg',
   },
 ];

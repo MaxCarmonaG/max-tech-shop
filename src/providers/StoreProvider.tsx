@@ -1,12 +1,7 @@
-import {
-  useState,
-  useEffect,
-  createContext,
-  FC,
-  PropsWithChildren,
-} from 'react';
-
-// import { CATEGORY_DATA } from './shop.data';
+import { useState, useEffect, FC, PropsWithChildren } from 'react';
+// import { itemsObserver } from '@/services/firebase';
+import { ItemType } from '@/types';
+import StoreContext from './StoreContext';
 import {
   addItem,
   removeItem,
@@ -15,42 +10,22 @@ import {
   getCartTotal,
   getTotalItems,
 } from './utils';
-import { ItemType, StoreContextType } from '@/types';
+import { CATEGORY_DATA } from './shop.data';
 import { itemsObserver } from '@/services/firebase';
-
-export const StoreContext = createContext<StoreContextType>({
-  data: [],
-  display: false,
-  toggleDisplay: () => {},
-  cartItems: [],
-  addToCart: () => {},
-  add: () => {},
-  remove: () => {},
-  clear: () => {},
-  cartTotal: 0,
-  totalItems: 0,
-  clearCart: () => {},
-});
 
 const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
   const [display, setDisplay] = useState(false);
+  const [items, setItems] = useState<ItemType[]>([]);
   const [cartItems, setCartItems] = useState<ItemType[]>([]);
-  const [data, setData] = useState<ItemType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const toggleDisplay = () => setDisplay(!display);
 
-  /*const getData = new Promise((resolve, reject) => {
-        if(CATEGORY_DATA.length){
-            setTimeout(() => resolve(CATEGORY_DATA),2000);
-            return;
-        } else {
-            reject('No data to display');
-            return;
-        };
-    });*/
-
   useEffect(() => {
-    const unsubscribe = itemsObserver(setData);
+    const unsubscribe = itemsObserver((data) => {
+      setItems(data);
+      setIsLoading(false);
+    });
     return () => unsubscribe();
   }, []);
 
@@ -69,10 +44,15 @@ const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
   const clear = (item: ItemType) => setCartItems(clearItem(cartItems, item));
   const clearCart = () => setCartItems([]);
 
+  const featured = items.filter(({ featured }) => featured);
+
   return (
     <StoreContext.Provider
       value={{
-        data,
+        categories: CATEGORY_DATA,
+        items,
+        featured,
+        isLoading,
         display,
         toggleDisplay,
         cartItems,
