@@ -1,0 +1,17 @@
+.container {
+  width: 90%;
+  margin-top: 15px;
+  background-color: #ffffff;
+  color: #1350a7;
+  line-height: 30px;
+  border: 1px solid #4992fa;
+  border-radius: 5px;
+  cursor: pointer;
+
+  :hover {
+    background-color: #4992fa;
+    color: #ffffff;
+    font-weight: bold;
+    border: 1px solid #1350a7;
+  }
+}

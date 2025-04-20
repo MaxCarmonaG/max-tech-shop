@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 
-import CategoryDetail from '../../containers/category-detail/category-detail.container';
-import Spinner from '../../components/spinner/spinner.component';
+import CategoryDetail from '@/components/CategoryDetail';
+import Spinner from '@/components/Spinner';
 import { StoreContext } from '@/providers';
 
 import styles from './Categories.module.scss';
 
-const CategoryList = () => {
+const Categories = () => {
   const { categories, items } = useContext(StoreContext);
 
   return categories.length ? (
@@ -19,6 +19,7 @@ const CategoryList = () => {
             title={title}
             slug={slug}
             items={categoryItems}
+            hasLink
           />
         );
       })}
@@ -28,4 +29,4 @@ const CategoryList = () => {
   );
 };
 
-export default CategoryList;
+export default Categories;

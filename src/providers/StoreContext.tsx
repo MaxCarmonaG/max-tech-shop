@@ -4,7 +4,6 @@ import { StoreContextType } from '@/types';
 const StoreContext = createContext<StoreContextType>({
   categories: [],
   items: [],
-  featured: [],
   isLoading: true,
   display: false,
   toggleDisplay: () => {},
@@ -16,6 +15,8 @@ const StoreContext = createContext<StoreContextType>({
   cartTotal: 0,
   totalItems: 0,
   clearCart: () => {},
+  fetchFeatured: () => ({ featuredItems: [], isLoading: true }),
+  fetchItemsByCategory: () => ({ items: [], isLoading: true }),
 });
 
 export default StoreContext;

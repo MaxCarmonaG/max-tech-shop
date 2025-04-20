@@ -1,0 +1,53 @@
+.container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  text-align: center;
+
+  &:first-child {
+    font-size: 30px;
+  }
+}
+
+.block {
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr 1fr 1fr;
+  border-bottom: 1px solid #000000;
+  padding: 15px 0;
+}
+
+.empty {
+  border-bottom: 1px solid #000000;
+  padding: 15px 0;
+}
+
+.total {
+  text-align: end;
+  padding: 15px 15px 0 0;
+}
+
+.button {
+  width: 300px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    overflow: auto;
+  }
+
+  .grid {
+    width: 673px;
+  }
+
+  .total {
+    text-align: start;
+    padding: 15px 0 0 15px;
+  }
+}

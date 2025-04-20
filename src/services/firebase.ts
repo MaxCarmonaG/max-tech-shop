@@ -7,6 +7,8 @@ import {
   QueryDocumentSnapshot,
   WithFieldValue,
   SnapshotOptions,
+  query,
+  where,
 } from 'firebase/firestore';
 
 const config = {
@@ -22,7 +24,7 @@ const app = initializeApp(config);
 
 const db = getFirestore(app);
 
-const ItemTypeConverter = {
+const itemsConverter = {
   toFirestore: (item: WithFieldValue<ItemType>) => item,
   fromFirestore: (
     snapshot: QueryDocumentSnapshot,
@@ -43,9 +45,51 @@ const ItemTypeConverter = {
   },
 };
 
-const itemsRef = collection(db, 'items').withConverter(ItemTypeConverter);
+const ordersConverter = {
+  toFirestore: (order: WithFieldValue<ItemType>) => order,
+  fromFirestore: (
+    snapshot: QueryDocumentSnapshot,
+    options: SnapshotOptions
+  ): ItemType => {
+    const data = snapshot.data(options).value;
+    return {
+      id: snapshot.id,
+      category: data.category,
+      name: data.name,
+      description: data.description,
+      imageUrl: data.imageUrl,
+      price: data.price,
+      stock: data.stock,
+      featured: data.featured,
+      // qty: data.qty,
+    };
+  },
+};
+
+const itemsRef = collection(db, 'items').withConverter(itemsConverter);
+
+const ordersRef = collection(db, 'orders').withConverter(ordersConverter);
 
 export const itemsObserver = (callback: (data: ItemType[]) => void) =>
   onSnapshot(itemsRef, (snapshot) =>
     callback(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
   );
+
+export const featuredObserver = (callback: (data: ItemType[]) => void) => {
+  const q = query(itemsRef, where('featured', '==', true));
+  return onSnapshot(q, (snapshot) =>
+    callback(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  );
+};
+
+export const itemsByCategoryObserver = (
+  category: string,
+  callback: (data: ItemType[]) => void
+) => {
+  const q = query(itemsRef, where('category', '==', category));
+  return onSnapshot(q, (snapshot) =>
+    callback(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  );
+};
+
+export const addOrder = async (order: {

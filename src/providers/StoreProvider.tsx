@@ -1,6 +1,6 @@
 import { useState, useEffect, FC, PropsWithChildren } from 'react';
 // import { itemsObserver } from '@/services/firebase';
-import { ItemType } from '@/types';
+import { CartItemType, ItemType } from '@/types';
 import StoreContext from './StoreContext';
 import {
   addItem,
@@ -12,11 +12,13 @@ import {
 } from './utils';
 import { CATEGORY_DATA } from './shop.data';
 import { itemsObserver } from '@/services/firebase';
+import useFeatured from '@/hooks/useFeatured';
+import { useItemsByCategory } from '@/hooks/useItemsByCategory';
 
 const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
   const [display, setDisplay] = useState(false);
   const [items, setItems] = useState<ItemType[]>([]);
-  const [cartItems, setCartItems] = useState<ItemType[]>([]);
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const toggleDisplay = () => setDisplay(!display);
@@ -29,7 +31,7 @@ const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const addToCart = (item: ItemType) =>
+  const addToCart = (item: CartItemType) =>
     setCartItems(reduceCart([...cartItems, item]));
 
   const [cartTotal, setCartTotal] = useState(0);
@@ -39,19 +41,20 @@ const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
     setTotalItems(getTotalItems(cartItems));
   }, [cartItems]);
 
-  const add = (item: ItemType) => setCartItems(addItem(cartItems, item));
-  const remove = (item: ItemType) => setCartItems(removeItem(cartItems, item));
-  const clear = (item: ItemType) => setCartItems(clearItem(cartItems, item));
+  const add = (item: CartItemType) => setCartItems(addItem(cartItems, item));
+  const remove = (item: CartItemType) =>
+    setCartItems(removeItem(cartItems, item));
+  const clear = (item: CartItemType) =>
+    setCartItems(clearItem(cartItems, item));
   const clearCart = () => setCartItems([]);
-
-  const featured = items.filter(({ featured }) => featured);
 
   return (
     <StoreContext.Provider
       value={{
         categories: CATEGORY_DATA,
+        fetchFeatured: useFeatured,
+        fetchItemsByCategory: useItemsByCategory,
         items,
-        featured,
         isLoading,
         display,
         toggleDisplay,
