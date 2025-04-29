@@ -11,7 +11,7 @@
       "@/*": ["src/*"]
     },
 
-    "types": ["vite/client", "vitest/globals", "vitest/jsdom"],
+    "types": ["vite/client"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

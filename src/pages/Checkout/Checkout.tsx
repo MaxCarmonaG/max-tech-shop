@@ -5,12 +5,12 @@ import {
   FocusEvent,
   FormEvent,
 } from 'react';
-import firebase, { firestore } from '../../firebase/firebase.utils';
 import { StoreContext } from '@/providers';
 import CustomButton from '@/components/CustomButton';
-import CartWidgetItem from '../../components/cart-widget-item/cart-widget-item.component';
+import CartWidgetItem from '@/components/CartWidgetItem';
 import styles from './checkout.module.scss';
 import { Navigate } from 'react-router';
+import { addOrder } from '@/libs/firebase';
 
 const Checkout = () => {
   const { cartItems, cartTotal, clearCart } = useContext(StoreContext);
@@ -71,7 +71,6 @@ const Checkout = () => {
     user: formData,
     items: cartItems,
     totalPrice: cartTotal,
-    date: firebase.firestore.Timestamp.fromDate(new Date()),
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -82,12 +81,12 @@ const Checkout = () => {
     }
 
     if (formData.email === formData.confirmEmail) {
-      firestore
-        .collection('orders')
-        .add(purchase)
-        .then(({ id }) => setOrderId(id))
-        .catch((error) => console.log(error))
-        .finally(() => clearCart());
+      addOrder(purchase).then((id) => {
+        if (id) {
+          setOrderId(id);
+          clearCart();
+        }
+      });
     } else {
       alert('Invalid Email confirmation');
     }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { featuredObserver } from '@/services/firebase';
+import { featuredObserver } from '@/libs/firebase';
 import { ItemType } from '@/types';
 
 const useFeatured = () => {

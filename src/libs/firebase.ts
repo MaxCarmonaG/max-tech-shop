@@ -1,4 +1,4 @@
-import { ItemType } from '@/types';
+import { ItemType, OrderType } from '@/types';
 import { initializeApp } from 'firebase/app';
 import {
   collection,
@@ -9,6 +9,8 @@ import {
   SnapshotOptions,
   query,
   where,
+  addDoc,
+  Timestamp,
 } from 'firebase/firestore';
 
 const config = {
@@ -30,7 +32,7 @@ const itemsConverter = {
     snapshot: QueryDocumentSnapshot,
     options: SnapshotOptions
   ): ItemType => {
-    const data = snapshot.data(options).value;
+    const data = snapshot.data(options);
     return {
       id: snapshot.id,
       category: data.category,
@@ -40,35 +42,13 @@ const itemsConverter = {
       price: data.price,
       stock: data.stock,
       featured: data.featured,
-      // qty: data.qty,
-    };
-  },
-};
-
-const ordersConverter = {
-  toFirestore: (order: WithFieldValue<ItemType>) => order,
-  fromFirestore: (
-    snapshot: QueryDocumentSnapshot,
-    options: SnapshotOptions
-  ): ItemType => {
-    const data = snapshot.data(options).value;
-    return {
-      id: snapshot.id,
-      category: data.category,
-      name: data.name,
-      description: data.description,
-      imageUrl: data.imageUrl,
-      price: data.price,
-      stock: data.stock,
-      featured: data.featured,
-      // qty: data.qty,
     };
   },
 };
 
 const itemsRef = collection(db, 'items').withConverter(itemsConverter);
 
-const ordersRef = collection(db, 'orders').withConverter(ordersConverter);
+const ordersRef = collection(db, 'orders');
 
 export const itemsObserver = (callback: (data: ItemType[]) => void) =>
   onSnapshot(itemsRef, (snapshot) =>
@@ -92,4 +72,14 @@ export const itemsByCategoryObserver = (
   );
 };
 
-export const addOrder = async (order: {
+export const addOrder = async (order: OrderType) => {
+  try {
+    const data = await addDoc(ordersRef, {
+      ...order,
+      date: Timestamp.fromDate(new Date()),
+    });
+    return data.id;
+  } catch (error) {
+    console.error('Error adding order: ', error);
+  }
+};

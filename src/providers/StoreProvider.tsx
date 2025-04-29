@@ -11,7 +11,7 @@ import {
   getTotalItems,
 } from './utils';
 import { CATEGORY_DATA } from './shop.data';
-import { itemsObserver } from '@/services/firebase';
+import { itemsObserver } from '@/libs/firebase';
 import useFeatured from '@/hooks/useFeatured';
 import { useItemsByCategory } from '@/hooks/useItemsByCategory';
 

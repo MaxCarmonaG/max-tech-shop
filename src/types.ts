@@ -43,5 +43,13 @@ export type CartItemType = Omit<ItemType, 'featured' | 'stock'> & {
 };
 
 export type OrderType = {
-  id: string;
+  user: {
+    name: string;
+    address: string;
+    phone: string;
+    email: string;
+    confirmEmail: string;
+  };
+  items: CartItemType[];
+  totalPrice: number;
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { itemsByCategoryObserver } from '@/services/firebase';
+import { itemsByCategoryObserver } from '@/libs/firebase';
 import { ItemType } from '@/types';
 
 export const useItemsByCategory = (category: string) => {
