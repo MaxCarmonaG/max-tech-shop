@@ -1,14 +1,11 @@
 import { Routes, Route } from 'react-router';
 import Header from '@/components/Header';
 import Home from '@/pages/Home';
-import Categories from './pages/Categories';
-import Category from './pages/Category/Category';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
-//import { addCollectionsAndDocuments } from './firebase/firebase.utils';
-//import { ITEMS_DATA } from './providers/shop.data';
+import Categories from '@/pages/Categories';
+import Category from '@/pages/Category';
+import Cart from '@/pages/Cart';
+import Checkout from '@/pages/Checkout';
 import NotFound from '@/components/NotFound';
-import './App.css';
 
 function App() {
   return (
