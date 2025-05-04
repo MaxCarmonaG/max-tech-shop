@@ -1,15 +1,37 @@
-.title {
-  font-size: 30px;
-  text-transform: uppercase;
-  text-align: center;
-  width: 100%;
-  background-color: #261066;
-  padding: 10px 0;
-  margin-bottom: 15px;
-  color: #ffffff;
+@use '@/variables' as *;
+
+.section {
+  background-color: $color-blue-3;
+  position: relative;
+  height: 22rem;
+
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: $color-dark;
+    padding-top: 2rem;
+  }
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.container {
+  border-radius: 30px;
+  box-shadow: $card-shadow;
+  position: absolute;
+  top: 7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2rem;
+  background-color: $color-light;
+}
+
+.title {
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: $color-primary;
+  margin-bottom: 1rem;
+}
+
+.wave {
+  color: $color-blue-3;
 }

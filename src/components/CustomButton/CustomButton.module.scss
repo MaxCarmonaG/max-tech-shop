@@ -1,17 +1,40 @@
-.container {
-  width: 90%;
-  margin-top: 15px;
-  background-color: #ffffff;
-  color: #1350a7;
-  line-height: 30px;
-  border: 1px solid #4992fa;
-  border-radius: 5px;
-  cursor: pointer;
+@use '@/variables' as *;
 
-  :hover {
-    background-color: #4992fa;
-    color: #ffffff;
-    font-weight: bold;
-    border: 1px solid #1350a7;
+.btn {
+  padding: 0.5rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.default {
+  background-color: $color-primary;
+  color: $color-light;
+  border: 1px solid $color-primary;
+
+  &:hover {
+    background-color: $color-light;
+    color: $color-primary;
+  }
+}
+
+.outline {
+  background-color: $color-light;
+  color: $color-primary;
+  border: 1px solid $color-primary;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-light;
+  }
+}
+
+.disabled {
+  background-color: $color-gray;
+  color: $color-dark;
+  border: 1px solid $color-gray;
+  cursor: not-allowed;
+
+  &:hover {
+    filter: brightness(90%);
   }
 }

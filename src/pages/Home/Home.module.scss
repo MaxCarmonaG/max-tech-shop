@@ -1,17 +1,14 @@
-.container {
-  width: 80vw;
-  margin: 15px auto;
-}
+@use '@/variables' as *;
 
 .title {
-  font-size: 30px;
+  font-size: 2rem;
   text-transform: uppercase;
   text-align: center;
   width: 100%;
-  background-color: #261066;
-  padding: 10px 0;
-  margin: 15px 0;
-  color: #ffffff;
+  background-color: $color-primary;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  color: $color-light;
 }
 
 .grid {

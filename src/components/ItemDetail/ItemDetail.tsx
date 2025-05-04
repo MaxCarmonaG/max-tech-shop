@@ -1,10 +1,14 @@
 import { FC } from 'react';
-import ItemCount from '../ItemCount/ItemCount.tsx';
+import ItemCount from '@/components/ItemCount';
 import { ItemType } from '@/types';
 import styles from './ItemDetail.module.scss';
+import { useOutletContext } from 'react-router';
 
-const ItemDetail: FC<ItemType> = (props) => {
+const ItemDetail: FC = () => {
+  const props = useOutletContext<ItemType>();
+
   const { name, description, imageUrl, price } = props;
+
   return (
     <div className={styles.container}>
       <img src={imageUrl} alt={name} className={styles.image} />

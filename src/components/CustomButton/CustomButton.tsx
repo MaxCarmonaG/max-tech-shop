@@ -7,21 +7,29 @@ interface CustomButtonProps {
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   to?: string;
+  className?: string;
+  variant?: 'default' | 'outline';
 }
 
 const CustomButton: FC<PropsWithChildren<CustomButtonProps>> = ({
   children,
   to,
+  className = '',
+  variant = 'default',
+  disabled = false,
   ...props
-}) =>
-  to ? (
-    <Link to={to} className={styles.container}>
+}) => {
+  const classes =
+    `${styles.btn} ${disabled ? styles.disabled : styles[variant]} ${className}`.trim();
+  return to && !disabled ? (
+    <Link to={to} className={classes}>
       {children}
     </Link>
   ) : (
-    <button {...props} className={styles.container}>
+    <button {...props} className={classes}>
       {children}
     </button>
   );
+};
 
 export default CustomButton;

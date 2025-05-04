@@ -7,7 +7,7 @@ import { StoreContext } from '@/providers';
 import styles from './Cart.module.scss';
 
 const Cart = () => {
-  const { cartItems, cartTotal } = useContext(StoreContext);
+  const { cartItems, cartTotal, remove, add, clear } = useContext(StoreContext);
 
   if (!cartItems.length) return <Navigate to="/" />;
   return (
@@ -21,7 +21,15 @@ const Cart = () => {
           <span>Remove</span>
         </div>
         {cartItems.length ? (
-          cartItems.map((item) => <CartItem key={item.id} item={item} />)
+          cartItems.map((item) => (
+            <CartItem
+              key={item.id}
+              removeItem={() => remove(item)}
+              addItem={() => add(item)}
+              clearItem={() => clear(item)}
+              {...item}
+            />
+          ))
         ) : (
           <div className={styles.empty}>NO ITEMS TO DISPLAY</div>
         )}
