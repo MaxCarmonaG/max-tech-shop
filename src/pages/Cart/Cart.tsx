@@ -5,40 +5,41 @@ import CustomButton from '@/components/CustomButton';
 import { StoreContext } from '@/providers';
 
 import styles from './Cart.module.scss';
+import Container from '@/ui/Container';
 
 const Cart = () => {
   const { cartItems, cartTotal, remove, add, clear } = useContext(StoreContext);
 
   if (!cartItems.length) return <Navigate to="/" />;
   return (
-    <div className={styles.container}>
-      <div className={styles.grid}>
-        <div className={styles.block}>
-          <span>Product</span>
-          <span>Description</span>
-          <span>Quantity</span>
-          <span>Price</span>
-          <span>Remove</span>
+    <Container>
+      <article className={styles.frame}>
+        <div className={styles.grid}>
+          <div className={styles.row}>
+            <span>Product</span>
+            <span>Description</span>
+            <span>Quantity</span>
+            <span>Price</span>
+            <span>Remove</span>
+          </div>
+          <div className={styles.row}>
+            {cartItems.map((item) => (
+              <CartItem
+                key={item.id}
+                removeItem={() => remove(item)}
+                addItem={() => add(item)}
+                clearItem={() => clear(item)}
+                {...item}
+              />
+            ))}
+          </div>
+          <div className={styles.total}>Total : $ {cartTotal}</div>
         </div>
-        {cartItems.length ? (
-          cartItems.map((item) => (
-            <CartItem
-              key={item.id}
-              removeItem={() => remove(item)}
-              addItem={() => add(item)}
-              clearItem={() => clear(item)}
-              {...item}
-            />
-          ))
-        ) : (
-          <div className={styles.empty}>NO ITEMS TO DISPLAY</div>
-        )}
-        <div className={styles.total}>Total : $ {cartTotal}</div>
-      </div>
-      <div className={styles.button}>
-        <CustomButton to="/checkout">Go to checkout</CustomButton>
-      </div>
-    </div>
+      </article>
+      <CustomButton className={styles.button} to="/checkout">
+        Go to checkout
+      </CustomButton>
+    </Container>
   );
 };
 

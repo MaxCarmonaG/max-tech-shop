@@ -14,23 +14,25 @@ const ItemCount: FC<ItemType> = (props) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.frame}>
         <div className={styles.counter}>
-          <button
+          <CustomButton
             className={styles.control}
             onClick={() => setItemCount(itemCount - 1)}
             disabled={!itemCount}
+            variant="outline"
           >
             &#8722;
-          </button>
+          </CustomButton>
           <span>{itemCount}</span>
-          <button
+          <CustomButton
             className={styles.control}
             onClick={() => setItemCount(itemCount + 1)}
             disabled={itemCount === props.stock}
+            variant="outline"
           >
-            +
-          </button>
+            &#43;
+          </CustomButton>
         </div>
       </div>
       <CustomButton

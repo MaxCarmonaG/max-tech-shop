@@ -1,16 +1,13 @@
 import { useContext } from 'react';
-
 import CategoryDetail from '@/components/CategoryDetail';
 import Spinner from '@/components/Spinner';
 import { StoreContext } from '@/providers';
-
-import styles from './Categories.module.scss';
 
 const Categories = () => {
   const { categories, items } = useContext(StoreContext);
 
   return categories.length ? (
-    <div className={styles.container}>
+    <>
       {categories.map(({ id, title, slug }) => {
         const categoryItems = items.filter(({ category }) => category === slug);
         return (
@@ -23,7 +20,7 @@ const Categories = () => {
           />
         );
       })}
-    </div>
+    </>
   ) : (
     <Spinner />
   );

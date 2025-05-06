@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
 import styles from './Directory.module.scss';
 
@@ -10,21 +10,17 @@ interface DirectoryProps {
 }
 
 const Directory: FC<DirectoryProps> = ({ imageUrl, title, slug }) => {
-  const navigate = useNavigate();
   return (
-    <div className={styles.container}>
+    <Link className={styles.container} to={`/${slug}`}>
       <div
         style={{ backgroundImage: `url(${imageUrl})` }}
         className={styles.imageBackground}
       />
-      <div
-        className={styles.titleContainer}
-        onClick={() => navigate(`/${slug}`)}
-      >
-        <h1 className={styles.title}>{title}</h1>
-        <h2 className={styles.subtitle}>Shop Now</h2>
+      <div className={styles.titleContainer}>
+        <h2>{title}</h2>
+        <h3>Shop Now</h3>
       </div>
-    </div>
+    </Link>
   );
 };
 

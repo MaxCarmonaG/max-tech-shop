@@ -20,7 +20,7 @@ const CategoryDetail: FC<CategoryDetailProps> = ({
   hasLink,
 }) => {
   return (
-    <div className={styles.category}>
+    <>
       <div className={styles.title}>
         {hasLink ? <Link to={`/${slug}`}>{title}</Link> : title}
       </div>
@@ -31,7 +31,7 @@ const CategoryDetail: FC<CategoryDetailProps> = ({
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

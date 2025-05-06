@@ -19,7 +19,7 @@ const CartItem: FC<CartItemProps> = ({
   addItem,
   clearItem,
 }) => (
-  <div className={styles.container}>
+  <>
     <div className={styles.product}>
       <img className={styles.img} src={imageUrl} alt={name} />
       <span className={styles.name}>{name}</span>
@@ -38,7 +38,7 @@ const CartItem: FC<CartItemProps> = ({
     <div className={styles.clear} onClick={clearItem}>
       &#10005;
     </div>
-  </div>
+  </>
 );
 
 export default CartItem;

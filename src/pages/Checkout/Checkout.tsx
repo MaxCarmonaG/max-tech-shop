@@ -11,6 +11,7 @@ import CartWidgetItem from '@/components/CartWidgetItem';
 import styles from './checkout.module.scss';
 import { Navigate } from 'react-router';
 import { addOrder } from '@/libs/firebase';
+import Container from '@/ui/Container';
 
 const Checkout = () => {
   const { cartItems, cartTotal, clearCart } = useContext(StoreContext);
@@ -94,83 +95,87 @@ const Checkout = () => {
 
   if (!cartItems.length && !orderId) return <Navigate to="/" />;
 
-  return !orderId ? (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.info}>
-          <span className={styles.title}>billing information</span>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            required
-          />
-          <label htmlFor="address">address</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            required
-          />
-          <label htmlFor="phone">Phone</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            required
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            required
-          />
-          <label htmlFor="confirmEmail">Confirm Email</label>
-          <input
-            type="email"
-            id="confirmEmail"
-            name="confirmEmail"
-            value={formData.confirmEmail}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={styles.cart}>
-          <div className={styles.title}>Your products</div>
-          <div className={styles.items}>
-            {cartItems.map(({ id, ...props }) => (
-              <CartWidgetItem key={id} {...props} />
-            ))}
+  return (
+    <section className={styles.section}>
+      <Container>
+        {!orderId ? (
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.info}>
+              <span className={styles.title}>billing information</span>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+              />
+              <label htmlFor="address">address</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+              />
+              <label htmlFor="phone">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+              />
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+              />
+              <label htmlFor="confirmEmail">Confirm Email</label>
+              <input
+                type="email"
+                id="confirmEmail"
+                name="confirmEmail"
+                value={formData.confirmEmail}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className={styles.cart}>
+              <div className={styles.title}>Your products</div>
+              <div className={styles.items}>
+                {cartItems.map(({ id, ...props }) => (
+                  <CartWidgetItem key={id} {...props} />
+                ))}
+              </div>
+              <div className={styles.total}>Total order $ {cartTotal}</div>
+              <CustomButton className={styles.button} type="submit">
+                Place order
+              </CustomButton>
+            </div>
+          </form>
+        ) : (
+          <div className={styles.purchase}>
+            <span className={styles.title}>Purchase successful</span>
+            <span>Your order number is # {orderId}</span>
+            <CustomButton to="/" className={styles.button}>
+              Return to home
+            </CustomButton>
           </div>
-          <div className={styles.total}>Total order $ {cartTotal}</div>
-          <div className={styles.button}>
-            <CustomButton type="submit">Place order</CustomButton>
-          </div>
-        </div>
-      </form>
-    </div>
-  ) : (
-    <div className={styles.purchase}>
-      <span className={styles.title}>Purchase successful</span>
-      <span>Your order number is # {orderId}</span>
-      <div className={styles.button}>
-        <CustomButton to="/">Return to home</CustomButton>
-      </div>
-    </div>
+        )}
+      </Container>
+    </section>
   );
 };
 

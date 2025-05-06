@@ -6,7 +6,8 @@ import Category from '@/pages/Category';
 import Cart from '@/pages/Cart';
 import Checkout from '@/pages/Checkout';
 import NotFound from '@/components/NotFound';
-import ItemDetail from '@/components/ItemDetail';
+import ItemDetail from '@/pages/ItemDetail';
+import Layout from './ui/Layout/Layout';
 
 function App() {
   return (
@@ -14,11 +15,13 @@ function App() {
       <Header />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/:category" element={<Category />}>
-          <Route path=":id" element={<ItemDetail />} />
+        <Route element={<Layout />}>
+          <Route path="cart" element={<Cart />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path=":category" element={<Category />}>
+            <Route path=":id" element={<ItemDetail />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -1,53 +1,44 @@
-.container {
-  width: 80vw;
-  margin: 0 auto;
+@use '@/variables' as *;
+
+.frame {
+  overflow-x: auto;
+  margin-bottom: 2rem;
 }
 
 .grid {
   display: grid;
-  text-align: center;
-
-  &:first-child {
-    font-size: 30px;
-  }
+  min-width: 48rem;
+  font-size: 1.5rem;
 }
 
-.block {
+.row {
   display: grid;
   grid-template-columns: 3fr 3fr 2fr 1fr 1fr;
-  border-bottom: 1px solid #000000;
-  padding: 15px 0;
-}
-
-.empty {
-  border-bottom: 1px solid #000000;
-  padding: 15px 0;
+  place-items: center;
+  border-bottom: 1px solid $color-dark;
+  padding: 1rem 0;
 }
 
 .total {
-  text-align: end;
-  padding: 15px 15px 0 0;
+  padding: 1rem 0 0 1rem;
 }
 
 .button {
-  width: 300px;
+  display: block;
+  width: 18rem;
   margin: 0 auto;
-  display: grid;
-  place-items: center;
+  text-align: center;
 }
 
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    overflow: auto;
-  }
-
+@media only screen and (min-width: 768px) {
   .grid {
-    width: 673px;
+    &:first-child {
+      font-size: 2rem;
+    }
   }
 
   .total {
-    text-align: start;
-    padding: 15px 0 0 15px;
+    text-align: end;
+    padding: 1rem 1rem 0 0;
   }
 }

@@ -1,12 +1,8 @@
 import { useContext } from 'react';
 import { Outlet, useParams } from 'react-router';
-
+import { StoreContext } from '@/providers';
 import CategoryDetail from '@/components/CategoryDetail';
 import Spinner from '@/components/Spinner';
-
-import { StoreContext } from '@/providers';
-
-import styles from './Category.module.scss';
 import NotFound from '@/components/NotFound';
 
 const Category = () => {
@@ -24,15 +20,15 @@ const Category = () => {
 
     if (item) {
       return <Outlet context={item} />;
+    } else {
+      return <NotFound />;
     }
   }
 
   return isLoading ? (
     <Spinner />
   ) : items.length ? (
-    <div className={styles.container}>
-      <CategoryDetail slug={slug} title={title} items={items} />
-    </div>
+    <CategoryDetail slug={slug} title={title} items={items} />
   ) : (
     <NotFound />
   );

@@ -19,12 +19,12 @@ const Featured = () => {
       <section className={styles.section}>
         <h1>Gear Up with the Best in Tech</h1>
         <Container className={styles.container}>
-          <h2 className={styles.title}>featured</h2>
-          <Carousel>
-            {featuredItems.map((props) => (
-              <FeaturedItem key={props.id} {...props} />
-            ))}
-          </Carousel>
+          <div className={styles.card}>
+            <h2 className={styles.title}>featured</h2>
+            <Carousel data={featuredItems}>
+              {(props) => <FeaturedItem {...props} />}
+            </Carousel>
+          </div>
         </Container>
       </section>
       <div className={styles.wave}>
@@ -35,5 +35,3 @@ const Featured = () => {
 };
 
 export default Featured;
-
-// https://www.free-css.com/assets/files/free-css-templates/preview/page290/brighton/

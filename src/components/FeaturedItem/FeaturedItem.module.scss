@@ -1,6 +1,7 @@
 .container {
   display: flex;
-  column-gap: 1rem;
+  flex-direction: column;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -12,7 +13,8 @@
   align-items: center;
 
   & img {
-    height: 100%;
+    max-height: 11rem;
+    width: 100%;
     object-fit: contain;
   }
 }
@@ -46,4 +48,16 @@
 .cta {
   font-size: 2rem;
   text-transform: uppercase;
+}
+
+@media only screen and (min-width: 992px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .imageContainer {
+    img {
+      max-height: 100%;
+    }
+  }
 }

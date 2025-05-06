@@ -13,17 +13,12 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   place-items: center;
-  gap: 15px;
+  gap: 1rem;
 }
 
-@media (max-width: 768px) {
+@media only screen and (min-width: 1200px) {
   .grid {
-    display: block;
-  }
-
-  .container {
-    width: 100%;
+    grid-template-columns: 1fr 1fr;
   }
 }

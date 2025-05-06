@@ -1,33 +1,24 @@
-import { FC, PropsWithChildren } from 'react';
-import ReactCarousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { ReactNode } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 
-const Carousel: FC<PropsWithChildren> = ({ children }) => {
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 4000, min: 768 },
-      items: 1,
-    },
-    mobile: {
-      breakpoint: { max: 768, min: 0 },
-      items: 1,
-    },
-  };
+interface CarouselProps<T> {
+  data: (T & { id: string })[];
+  children: (props: T & { id: string }) => ReactNode;
+}
+
+const Carousel = <T,>({ data, children }: CarouselProps<T>) => {
+  const [emblaRef] = useEmblaCarousel();
 
   return (
-    <ReactCarousel
-      swipeable={true}
-      draggable={false}
-      showDots={true}
-      responsive={responsive}
-      infinite={true}
-      autoPlay={true}
-      autoPlaySpeed={3000}
-      keyBoardControl={true}
-      removeArrowOnDeviceType={['mobile']}
-    >
-      {children}
-    </ReactCarousel>
+    <div style={{ overflow: 'hidden' }} ref={emblaRef}>
+      <div style={{ display: 'flex' }}>
+        {data.map((props) => (
+          <div style={{ flex: '0 0 100%', minWidth: 0 }} key={props.id}>
+            {children(props)}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

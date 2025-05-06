@@ -3,23 +3,19 @@
 .section {
   background-color: $color-blue-3;
   position: relative;
-  height: 22rem;
+  padding-top: 2rem;
 
   h1 {
     font-size: 3rem;
     text-align: center;
     color: $color-dark;
-    padding-top: 2rem;
+    padding: 0 2rem 1rem;
   }
 }
 
-.container {
+.card {
   border-radius: 30px;
   box-shadow: $card-shadow;
-  position: absolute;
-  top: 7rem;
-  left: 50%;
-  transform: translateX(-50%);
   padding: 2rem;
   background-color: $color-light;
 }
@@ -34,4 +30,18 @@
 
 .wave {
   color: $color-blue-3;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (min-width: 992px) {
+  .section {
+    height: 22rem;
+  }
+
+  .container {
+    position: absolute;
+    top: 7rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
