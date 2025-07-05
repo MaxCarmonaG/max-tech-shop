@@ -38,7 +38,7 @@ export type StoreContextType = {
   clearCart: () => void;
 };
 
-export type CartItemType = Omit<ItemType, 'featured' | 'stock'> & {
+export type CartItemType = Omit<ItemType, 'featured'> & {
   qty: number;
 };
 
