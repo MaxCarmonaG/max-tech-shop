@@ -8,7 +8,7 @@ import {
 import { StoreContext } from '@/providers';
 import CustomButton from '@/components/CustomButton';
 import CartWidgetItem from '@/components/CartWidgetItem';
-import styles from './checkout.module.scss';
+import styles from './Checkout.module.scss';
 import { Navigate } from 'react-router';
 import { addOrder } from '@/libs/firebase';
 import Container from '@/ui/Container';
