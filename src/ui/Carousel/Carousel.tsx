@@ -7,7 +7,9 @@ interface CarouselProps<T> {
 }
 
 const Carousel = <T,>({ data, children }: CarouselProps<T>) => {
-  const [emblaRef] = useEmblaCarousel();
+  const [emblaRef] = useEmblaCarousel({
+    loop: true,
+  });
 
   return (
     <div style={{ overflow: 'hidden' }} ref={emblaRef}>
