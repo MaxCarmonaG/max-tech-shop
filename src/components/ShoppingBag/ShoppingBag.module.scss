@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  margin: auto 0;
+  cursor: pointer;
+}
+
+.value {
+  position: absolute;
+  font-size: 25px;
+  color: #ffffff;
+  top: 45%;
+}

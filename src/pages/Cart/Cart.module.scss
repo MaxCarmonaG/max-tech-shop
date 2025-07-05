@@ -1,0 +1,44 @@
+@use '@/variables' as *;
+
+.frame {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  min-width: 48rem;
+  font-size: 1.5rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr 1fr 1fr;
+  place-items: center;
+  border-bottom: 1px solid $color-dark;
+  padding: 1rem 0;
+}
+
+.total {
+  padding: 1rem 0 0 1rem;
+}
+
+.button {
+  display: block;
+  width: 18rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .grid {
+    &:first-child {
+      font-size: 2rem;
+    }
+  }
+
+  .total {
+    text-align: end;
+    padding: 1rem 1rem 0 0;
+  }
+}

@@ -1,0 +1,41 @@
+.container {
+  display: grid;
+  grid-template-rows: 300px 1fr;
+  place-items: center;
+}
+
+.imageContainer {
+  height: 100%;
+
+  & img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.descriptionContainer {
+  padding-top: 15px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 3fr 90px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.description {
+  text-align: justify;
+}
+
+.price {
+  font-size: 32px;
+  text-align: center;
+}
