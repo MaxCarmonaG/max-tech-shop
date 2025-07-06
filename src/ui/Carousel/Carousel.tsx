@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import styles from './Carousel.module.scss';
+import CustomButton from '@/components/CustomButton';
 
 interface CarouselProps<T> {
   data: (T & { id: string })[];
@@ -7,18 +9,44 @@ interface CarouselProps<T> {
 }
 
 const Carousel = <T,>({ data, children }: CarouselProps<T>) => {
-  const [emblaRef] = useEmblaCarousel({
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
   });
 
+  const onPrevButtonClick = () => {
+    if (!emblaApi) return;
+    emblaApi.scrollPrev();
+  };
+
+  const onNextButtonClick = () => {
+    if (!emblaApi) return;
+    emblaApi.scrollNext();
+  };
+
   return (
-    <div style={{ overflow: 'hidden' }} ref={emblaRef}>
-      <div style={{ display: 'flex' }}>
-        {data.map((props) => (
-          <div style={{ flex: '0 0 100%', minWidth: 0 }} key={props.id}>
-            {children(props)}
-          </div>
-        ))}
+    <div className={styles.container}>
+      <CustomButton
+        variant="outline"
+        className={styles.prevButton}
+        onClick={onPrevButtonClick}
+      >
+        Prev
+      </CustomButton>
+      <CustomButton
+        variant="outline"
+        className={styles.nextButton}
+        onClick={onNextButtonClick}
+      >
+        Next
+      </CustomButton>
+      <div className={styles.carousel} ref={emblaRef}>
+        <div className={styles.group}>
+          {data.map((props) => (
+            <div className={styles.item} key={props.id}>
+              {children(props)}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
